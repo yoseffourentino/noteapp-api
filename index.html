@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Apps</title>
+</head>
+<body>
+    <header>
+        <note-app></note-app>
+    </header>
+    <main>
+        <form action="">
+            <label class="label-title" for="">Title</label>
+            <input type="text" name="note-title" id="note-title" class="note-title" placeholder="title">
+            <label class="label-title" for="">Body</label>
+            <textarea type="text" name="note-body" id="note-body" class="note-body" placeholder="note body"></textarea>
+            <button class="add-btn">+</button>
+        </form>
+        <my-notes></my-notes>
+        <div id="note-container" class="note-container">
+
+        </div>
+    </main>
+    <footer>
+        <footer-ui></footer-ui>
+    </footer>
+
+    <script src="./dist/bundle.js"></script>
+</body>
+</html>
+

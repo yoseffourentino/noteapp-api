@@ -1,3 +1,50 @@
+import css from './style.css';
+
+// Simple Component
+class NoteApp extends HTMLElement{
+    constructor(){
+        super();
+
+        this.render();
+    }
+
+    render(){
+        this.innerHTML = `<h2>Notes App</h2>`
+    }
+}
+
+customElements.define("note-app", NoteApp);
+
+class MyNotes extends HTMLElement{
+    constructor(){
+        super();
+
+        this.render();
+    }
+
+    render(){
+        this.innerHTML = `<h2>My Notes</h2>`
+    }
+}
+
+customElements.define("my-notes", MyNotes);
+
+
+class FooterUi extends HTMLElement {
+    constructor() {
+        super();
+
+        this.render()
+    }
+
+    render() {
+        this.innerHTML = `
+        <div class="main-footer">
+        Notes App Created by Yosef
+        </div>`;
+    }
+}
+customElements.define("footer-ui", FooterUi);
 
 // Constants
 const API_ENDPOINT = 'https://notes-api.dicoding.dev/v2/notes';
@@ -23,8 +70,8 @@ async function addNote(title, body) {
 
 // Function to show all notes
 async function showData() {
-    // const noteContainer = document.getElementById(NOTE_CONTAINER_ID);
-    // noteContainer.setAttribute('class', 'loader')
+    const noteContainer = document.getElementById(NOTE_CONTAINER_ID);
+    noteContainer.setAttribute('class', 'loader')
     try {
     const response = await fetch(API_ENDPOINT);
     const notes = await response.json();
@@ -34,10 +81,11 @@ async function showData() {
         const noteCard = createNoteCard(note);
         noteContainer.appendChild(noteCard);
     });
+    noteContainer.setAttribute('class', '')
     } catch (error) {
     console.error(error);
     }
-    // noteContainer.setAttribute('class', '')
+    
 }
 
 
@@ -45,7 +93,7 @@ async function showData() {
 function createNoteCard(note) {
     const card = document.createElement('div');
     card.innerHTML = `
-    <div>
+    <div class="card">
         <h1>${note.title}</h1>
         <p>${note.body}</p>
         <button class="delete-btn" id="${note.id}">delete</button>
